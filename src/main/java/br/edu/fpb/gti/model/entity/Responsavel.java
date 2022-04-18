@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "responsaveis")
-public class Responsavel extends AbstractEntity implements Serializable{
+public class Responsavel implements Serializable{
 
 	/**
 	 *
@@ -21,6 +21,11 @@ public class Responsavel extends AbstractEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "SQ_RESPONSAVEL")
 	private Long id;
-
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 }

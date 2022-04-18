@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "cargos")
-public class Cargo extends AbstractEntity implements Serializable{
+public class Cargo implements Serializable{
 
 	/**
 	 *
@@ -31,5 +31,31 @@ public class Cargo extends AbstractEntity implements Serializable{
 	// Por enquanto
 	@Transient
 	private String descFuncao;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescFuncao() {
+		return descFuncao;
+	}
+
+	public void setDescFuncao(String descFuncao) {
+		this.descFuncao = descFuncao;
+	}
+	
+	
 
 }
