@@ -1,6 +1,5 @@
 package br.edu.fpb.gti.controller.resource;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
