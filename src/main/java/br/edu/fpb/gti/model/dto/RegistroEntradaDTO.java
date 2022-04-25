@@ -5,7 +5,9 @@ import java.time.LocalTime;
 
 public class RegistroEntradaDTO {
 	
-	// private Apartamento;
+	private Integer numeroApartamento;
+	
+	private Long operador;
 	
 	private String nome;
 
@@ -22,6 +24,22 @@ public class RegistroEntradaDTO {
 	private Timestamp dataSaidaEstimada;
 
 	private Timestamp dataSaidaEfetiva;
+	
+	public Integer getNumeroApartamento() {
+		return numeroApartamento;
+	}
+
+	public void setNumeroApartamento(Integer numeroApartamento) {
+		this.numeroApartamento = numeroApartamento;
+	}
+
+	public Long getOperador() {
+		return operador;
+	}
+
+	public void setOperador(Long operador) {
+		this.operador = operador;
+	}
 
 	public String getNome() {
 		return nome;

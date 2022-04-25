@@ -56,6 +56,10 @@ public class RegistroEntrada implements Serializable {
 
 	@Column(name = "DATA_SAIDA")
 	private Timestamp dataSaidaEfetiva;
+	
+	@ManyToOne
+	@JoinColumn(name = "SQ_FUNCIONARIO")
+	private Funcionario operador;
 
 	public Long getId() {
 		return id;
@@ -136,9 +140,14 @@ public class RegistroEntrada implements Serializable {
 	public void setApartamento(Apartamento apartamento) {
 		this.apartamento = apartamento;
 	}
-	
-	
-	
+
+	public Funcionario getOperador() {
+		return operador;
+	}
+
+	public void setOperador(Funcionario operador) {
+		this.operador = operador;
+	}
 	
 	
 }

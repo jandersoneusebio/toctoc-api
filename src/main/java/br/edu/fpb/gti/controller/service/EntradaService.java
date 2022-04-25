@@ -18,18 +18,30 @@ import org.springframework.stereotype.Service;
 import br.edu.fpb.gti.exception.BusinessException;
 import br.edu.fpb.gti.exception.ExceptionService;
 import br.edu.fpb.gti.model.dto.RegistroEntradaDTO;
+import br.edu.fpb.gti.model.entity.Apartamento;
+import br.edu.fpb.gti.model.entity.Funcionario;
 import br.edu.fpb.gti.model.entity.RegistroEntrada;
+import br.edu.fpb.gti.model.repository.ApartamentoRepository;
 import br.edu.fpb.gti.model.repository.EntradaRepository;
+import br.edu.fpb.gti.model.repository.FuncionarioRepository;
 import br.edu.fpb.gti.util.DataUtil;
 
 @Service
 public class EntradaService {
 	
 	@Autowired
-	private EntradaRepository entradaDAO;
+	private EntradaRepository entradaRepository;
+	
+	@Autowired
+	private ApartamentoRepository apartamentoRepository;
+	
+	@Autowired
+	private FuncionarioRepository funcionarioRepository;
+	
+	
 	
 	public List<RegistroEntrada> listarEntradasAbertas(){
-		List<RegistroEntrada> listaEntradasAbertas = entradaDAO.findRegistrosAbertos();
+		List<RegistroEntrada> listaEntradasAbertas = entradaRepository.findRegistrosAbertos();
 		
 		return listaEntradasAbertas;
 	}
@@ -38,12 +50,12 @@ public class EntradaService {
 		
 		RegistroEntrada registro = montarRegistroEntrada(dto);
 		
-		return entradaDAO.save(registro);
+		return entradaRepository.save(registro);
 		
 	}
 	
 	public void fecharRegistroById(Long id) throws BusinessException {
-		RegistroEntrada registro = entradaDAO.findById(id).get();
+		RegistroEntrada registro = entradaRepository.findById(id).get();
 		
 		if(Objects.isNull(registro)) {
 			ExceptionService.lancarExcecao("Registro nao encontrado. ID: " + id);
@@ -51,7 +63,7 @@ public class EntradaService {
 		
 		registro.setDataSaidaEfetiva(DataUtil.retornarTimestampAtual());
 		
-		entradaDAO.save(registro);
+		entradaRepository.save(registro);
 	}
 	
 	private RegistroEntrada montarRegistroEntrada(RegistroEntradaDTO dto) {
@@ -65,11 +77,21 @@ public class EntradaService {
 			registro.setDataEntrada(new Timestamp(new Date().getTime()));
 			registro.setDataSaidaEstimada(calcularDataSaida(dto.getDataEntrada(), dto.getTempoPermanencia()));
 			registro.setTempoPermanencia(dto.getTempoPermanencia());
+			registro.setApartamento(buscarApartamento(dto.getNumeroApartamento()));
+			registro.setOperador(buscarOperador(dto.getOperador()));
 		} catch(ParseException ex) {
 			ex.printStackTrace();
 		}
 		
 		return registro;
+	}
+	
+	private Apartamento buscarApartamento(Integer id) {
+		return apartamentoRepository.findByNumero(id).orElse(null);
+	}
+	
+	private Funcionario buscarOperador(Long id) {
+		return funcionarioRepository.findById(id).orElse(null);
 	}
 	
 	public Timestamp calcularDataSaida(Timestamp dataEntrada, LocalTime tempoPermanencia) throws ParseException {
