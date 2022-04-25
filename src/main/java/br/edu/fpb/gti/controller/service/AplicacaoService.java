@@ -1,4 +1,4 @@
-package br.edu.fpb.gti.model.service;
+package br.edu.fpb.gti.controller.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

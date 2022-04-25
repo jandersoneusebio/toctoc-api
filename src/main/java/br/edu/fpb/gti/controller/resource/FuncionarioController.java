@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.fpb.gti.controller.service.FuncionarioService;
 import br.edu.fpb.gti.model.entity.Funcionario;
-import br.edu.fpb.gti.model.service.FuncionarioService;
 
 @RestController
 @RequestMapping("admin/funcionario")

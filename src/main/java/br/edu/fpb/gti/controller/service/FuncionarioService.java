@@ -1,4 +1,4 @@
-package br.edu.fpb.gti.model.service;
+package br.edu.fpb.gti.controller.service;
 
 import java.util.Optional;
 

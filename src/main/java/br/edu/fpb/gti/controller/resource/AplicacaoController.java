@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.edu.fpb.gti.controller.service.AplicacaoService;
 import br.edu.fpb.gti.model.dto.VersaoDTO;
-import br.edu.fpb.gti.model.service.AplicacaoService;
 
 @RestController
 @RequestMapping("aplicacao")
