@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,25 +23,15 @@ import javax.persistence.Table;
 public class RegistroEntrada implements Serializable {
 
 	private static final long serialVersionUID = -1542516200656290582L;
-	/*
-	SQ_REG_ENTRADA
-	NOME
-	CPF
-	MOTIVO
-	MOTIVO_DESCRICAO
-	DATA_ENTRADA
-	TEMPO_PERMANENCIA
-	DATA_SAIDA_ESTIMADA
-	DATA_SAIDA
-	SQ_APT
-	*/
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "SQ_REG_ENTRADA")
 	private Long id;
 	
-	// private Apartamento;
+	@ManyToOne
+	@JoinColumn(name = "SQ_APT")
+	private Apartamento apartamento;
 	
 	@Column(name = "NOME")
 	private String nome;
@@ -136,6 +128,15 @@ public class RegistroEntrada implements Serializable {
 	public void setDataSaidaEfetiva(Timestamp dataSaidaEfetiva) {
 		this.dataSaidaEfetiva = dataSaidaEfetiva;
 	}
+
+	public Apartamento getApartamento() {
+		return apartamento;
+	}
+
+	public void setApartamento(Apartamento apartamento) {
+		this.apartamento = apartamento;
+	}
+	
 	
 	
 	
