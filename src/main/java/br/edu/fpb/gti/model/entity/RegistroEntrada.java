@@ -6,6 +6,8 @@ import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,10 +17,28 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import br.edu.fpb.gti.model.enums.TipoVisitanteEnum;
+
 @Entity
 @Table(name = "registros_entrada")
 @NamedQueries({
-	@NamedQuery(name = "RegistroEntrada.findRegistrosAbertos", query = "SELECT r FROM RegistroEntrada r WHERE r.dataSaidaEfetiva IS NULL")
+	@NamedQuery(
+		name = "RegistroEntrada.findRegistrosAbertos", 
+		query = "SELECT r FROM RegistroEntrada r WHERE r.dataSaidaEfetiva IS NULL"
+	),
+	@NamedQuery(
+		name = "RegistroEntrada.findAllRegistrosFechados", 
+		query = "SELECT r FROM RegistroEntrada r WHERE r.dataSaidaEfetiva IS NOT NULL"
+	),
+	@NamedQuery(
+		name = "RegistroEntrada.findRegistrosFechadosPorPeriodoDeEntrada", 
+		query = "SELECT r FROM RegistroEntrada r WHERE r.dataSaidaEfetiva IS NOT NULL AND r.dataEntrada BETWEEN :inicio AND :fim"
+	),
+	@NamedQuery(
+		name = "RegistroEntrada.findRegistrosFechadosPorPeriodoDeSaida", 
+		query = "SELECT r FROM RegistroEntrada r WHERE r.dataSaidaEfetiva IS NOT NULL AND r.dataSaidaEfetiva BETWEEN :inicio AND :fim"
+	)
+	
 })
 public class RegistroEntrada implements Serializable {
 
@@ -40,7 +60,8 @@ public class RegistroEntrada implements Serializable {
 	private String cpfCnpj;
 
 	@Column(name = "MOTIVO")
-	private Integer motivo;
+	@Enumerated(EnumType.ORDINAL)
+	private TipoVisitanteEnum motivo;
 
 	@Column(name = "MOTIVO_DESCRICAO")
 	private String motivoDescricao;
@@ -60,6 +81,21 @@ public class RegistroEntrada implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "SQ_FUNCIONARIO")
 	private Funcionario operador;
+	
+	@Column(name = "TELEFONE")
+	private String telefone;
+	
+	@Column(name = "EMPRESA")
+	private String empresa;
+	
+	@Column(name = "PLACA")
+	private String placa;
+	
+	@Column(name = "MODELO")
+	private String modelo;
+	
+	@Column(name = "COR")
+	private String cor;
 
 	public Long getId() {
 		return id;
@@ -85,11 +121,11 @@ public class RegistroEntrada implements Serializable {
 		this.cpfCnpj = cpfCnpj;
 	}
 
-	public Integer getMotivo() {
+	public TipoVisitanteEnum getMotivo() {
 		return motivo;
 	}
 
-	public void setMotivo(Integer motivo) {
+	public void setMotivo(TipoVisitanteEnum motivo) {
 		this.motivo = motivo;
 	}
 
@@ -148,6 +184,47 @@ public class RegistroEntrada implements Serializable {
 	public void setOperador(Funcionario operador) {
 		this.operador = operador;
 	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+	
 	
 	
 }

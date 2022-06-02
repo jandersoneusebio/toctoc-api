@@ -2,15 +2,11 @@ package br.edu.fpb.gti.controller.service;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +17,7 @@ import br.edu.fpb.gti.model.dto.RegistroEntradaDTO;
 import br.edu.fpb.gti.model.entity.Apartamento;
 import br.edu.fpb.gti.model.entity.Funcionario;
 import br.edu.fpb.gti.model.entity.RegistroEntrada;
+import br.edu.fpb.gti.model.enums.TipoVisitanteEnum;
 import br.edu.fpb.gti.model.repository.ApartamentoRepository;
 import br.edu.fpb.gti.model.repository.EntradaRepository;
 import br.edu.fpb.gti.model.repository.FuncionarioRepository;
@@ -72,13 +69,16 @@ public class EntradaService {
 		try {
 			registro.setCpfCnpj(dto.getCpfCnpj());
 			registro.setNome(dto.getNome());
-			registro.setMotivo(dto.getMotivo());
+			registro.setMotivo(TipoVisitanteEnum.getByCodigo(dto.getMotivo()));
 			registro.setMotivoDescricao(dto.getMotivoDescricao());
 			registro.setDataEntrada(new Timestamp(new Date().getTime()));
 			registro.setDataSaidaEstimada(calcularDataSaida(dto.getDataEntrada(), dto.getTempoPermanencia()));
 			registro.setTempoPermanencia(dto.getTempoPermanencia());
 			registro.setApartamento(buscarApartamento(dto.getNumeroApartamento()));
 			registro.setOperador(buscarOperador(dto.getOperador()));
+			registro.setTelefone(dto.getTelefone());
+			registro.setEmpresa(dto.getEmpresa());
+			registro.setPlaca(dto.getPlaca());
 		} catch(ParseException ex) {
 			ex.printStackTrace();
 		}

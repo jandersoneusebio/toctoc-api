@@ -17,6 +17,14 @@ public interface EntradaRepository extends JpaRepository<RegistroEntrada, Long> 
 	//@Query("SELECT reg FROM RegistroEntrada WHERE reg.dataSaidaEfetiva IS NULL")
 	public List<RegistroEntrada> findRegistrosAbertos();
 	
+	public List<RegistroEntrada> findAllRegistrosFechados();
+	
+	public List<RegistroEntrada> findRegistrosFechadosPorPeriodoDeEntrada();
+
+	public List<RegistroEntrada> findRegistrosFechadosPorPeriodoDeSaida();
+
 	//List<RegistroEntrada> findByDataSaidaEstimada(null);
+	
+	
 	
 }

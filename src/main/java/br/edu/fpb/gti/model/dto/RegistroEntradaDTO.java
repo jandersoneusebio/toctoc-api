@@ -25,6 +25,12 @@ public class RegistroEntradaDTO {
 
 	private Timestamp dataSaidaEfetiva;
 	
+	private String telefone;
+	
+	private String placa;
+	
+	private String empresa;
+	
 	public Integer getNumeroApartamento() {
 		return numeroApartamento;
 	}
@@ -103,6 +109,30 @@ public class RegistroEntradaDTO {
 
 	public void setDataSaidaEfetiva(Timestamp dataSaidaEfetiva) {
 		this.dataSaidaEfetiva = dataSaidaEfetiva;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
 	}
 
 	
