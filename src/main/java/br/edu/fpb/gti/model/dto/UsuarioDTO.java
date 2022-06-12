@@ -4,6 +4,8 @@ import java.util.List;
 
 public class UsuarioDTO {
 	
+	private Long id;
+	
 	private String nome;
 	
 	private List<String> permissoes;
@@ -23,6 +25,16 @@ public class UsuarioDTO {
 	public void setPermissoes(List<String> permissoes) {
 		this.permissoes = permissoes;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 	
 	
 }

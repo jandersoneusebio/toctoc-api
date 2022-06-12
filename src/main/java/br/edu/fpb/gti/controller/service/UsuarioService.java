@@ -80,6 +80,7 @@ public class UsuarioService {
 	private static UsuarioDTO montarUsuarioDTO(Usuario usuario) {
 		
 		UsuarioDTO dto = new UsuarioDTO();
+		dto.setId(usuario.getId());
 		dto.setNome(usuario.getNome());
 		dto.setPermissoes(splitPermissoes(usuario.getPermissoes()));
 		

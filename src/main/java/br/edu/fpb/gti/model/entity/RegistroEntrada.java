@@ -1,6 +1,7 @@
 package br.edu.fpb.gti.model.entity;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.sql.Timestamp;
 import java.time.LocalTime;
 
@@ -57,14 +58,14 @@ public class RegistroEntrada implements Serializable {
 	private String nome;
 
 	@Column(name = "CPF")
-	private String cpfCnpj;
+	private String cpf;
 
 	@Column(name = "MOTIVO")
 	@Enumerated(EnumType.ORDINAL)
-	private TipoVisitanteEnum motivo;
+	private TipoVisitanteEnum tipoAutorizacao;
 
 	@Column(name = "MOTIVO_DESCRICAO")
-	private String motivoDescricao;
+	private String observacao;
 
 	@Column(name = "DATA_ENTRADA")
 	private Timestamp dataEntrada;
@@ -89,14 +90,35 @@ public class RegistroEntrada implements Serializable {
 	private String empresa;
 	
 	@Column(name = "PLACA")
-	private String placa;
+	private String placaVeiculo;
 	
 	@Column(name = "MODELO")
-	private String modelo;
+	private String modeloVeiculo;
 	
 	@Column(name = "COR")
-	private String cor;
-
+	private String corVeiculo;
+	
+	@Column(name = "CARGO")
+	private String cargo;
+	
+	@Column(name = "NOME_MORADOR")
+	private String nomeMorador;
+	
+	@Column(name = "TELEFONE_MORADOR")
+	private String telefoneMorador;
+	
+	@Column(name = "ENDERECO_DESTINO")
+	private String enderecoDestino;
+	
+	@Column(name = "NUMERO_DESTINO")
+	private Integer numeroDestino;
+	
+	@Column(name = "BLOCO_DESTINO")
+	private String blocoDestino;
+	
+	@Column(name = "APARTAMENTO_DESTINO")
+	private String apartamentoDestino;
+	
 	public Long getId() {
 		return id;
 	}
@@ -113,28 +135,28 @@ public class RegistroEntrada implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getCpfCnpj() {
-		return cpfCnpj;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCpfCnpj(String cpfCnpj) {
-		this.cpfCnpj = cpfCnpj;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public TipoVisitanteEnum getMotivo() {
-		return motivo;
+	public Integer getTipoAutorizacao() {
+		return tipoAutorizacao.getCodigo();
 	}
 
-	public void setMotivo(TipoVisitanteEnum motivo) {
-		this.motivo = motivo;
+	public void setTipoAutorizacao(TipoVisitanteEnum tipoAutorizacao) {
+		this.tipoAutorizacao = tipoAutorizacao;
 	}
 
-	public String getMotivoDescricao() {
-		return motivoDescricao;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setMotivoDescricao(String motivoDescricao) {
-		this.motivoDescricao = motivoDescricao;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
 	public Timestamp getDataEntrada() {
@@ -201,29 +223,86 @@ public class RegistroEntrada implements Serializable {
 		this.empresa = empresa;
 	}
 
-	public String getPlaca() {
-		return placa;
+	public String getPlacaVeiculo() {
+		return placaVeiculo;
 	}
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
+	public void setPlacaVeiculo(String placaVeiculo) {
+		this.placaVeiculo = placaVeiculo;
 	}
 
-	public String getModelo() {
-		return modelo;
+	public String getModeloVeiculo() {
+		return modeloVeiculo;
 	}
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
+	public void setModeloVeiculo(String modeloVeiculo) {
+		this.modeloVeiculo = modeloVeiculo;
 	}
 
-	public String getCor() {
-		return cor;
+	public String getCorVeiculo() {
+		return corVeiculo;
 	}
 
-	public void setCor(String cor) {
-		this.cor = cor;
+	public void setCorVeiculo(String corVeiculo) {
+		this.corVeiculo = corVeiculo;
 	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getNomeMorador() {
+		return nomeMorador;
+	}
+
+	public void setNomeMorador(String nomeMorador) {
+		this.nomeMorador = nomeMorador;
+	}
+
+	public String getTelefoneMorador() {
+		return telefoneMorador;
+	}
+
+	public void setTelefoneMorador(String telefoneMorador) {
+		this.telefoneMorador = telefoneMorador;
+	}
+
+	public String getEnderecoDestino() {
+		return enderecoDestino;
+	}
+
+	public void setEnderecoDestino(String enderecoDestino) {
+		this.enderecoDestino = enderecoDestino;
+	}
+
+	public Integer getNumeroDestino() {
+		return numeroDestino;
+	}
+
+	public void setNumeroDestino(Integer numeroDestino) {
+		this.numeroDestino = numeroDestino;
+	}
+
+	public String getBlocoDestino() {
+		return blocoDestino;
+	}
+
+	public void setBlocoDestino(String blocoDestino) {
+		this.blocoDestino = blocoDestino;
+	}
+
+	public String getApartamentoDestino() {
+		return apartamentoDestino;
+	}
+
+	public void setApartamentoDestino(String apartamentoDestino) {
+		this.apartamentoDestino = apartamentoDestino;
+	}
+	
 	
 	
 	

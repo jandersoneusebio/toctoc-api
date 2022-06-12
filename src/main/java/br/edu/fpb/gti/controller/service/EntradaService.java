@@ -67,19 +67,26 @@ public class EntradaService {
 		RegistroEntrada registro = new RegistroEntrada();
 		
 		try {
-			registro.setCpfCnpj(dto.getCpfCnpj());
+			registro.setCpf(dto.getCpf());
 			registro.setNome(dto.getNome());
-			registro.setMotivo(TipoVisitanteEnum.getByCodigo(dto.getMotivo()));
-			registro.setMotivoDescricao(dto.getMotivoDescricao());
-			registro.setDataEntrada(new Timestamp(new Date().getTime()));
-			registro.setDataSaidaEstimada(calcularDataSaida(dto.getDataEntrada(), dto.getTempoPermanencia()));
+			registro.setTipoAutorizacao(TipoVisitanteEnum.getByCodigo(dto.getTipoAutorizacao()));
+			registro.setObservacao(dto.getObservacao());
+			registro.setDataEntrada(dto.getDataEntrada());
+			registro.setDataSaidaEstimada(dto.getDataSaidaEstimada());
 			registro.setTempoPermanencia(dto.getTempoPermanencia());
-			registro.setApartamento(buscarApartamento(dto.getNumeroApartamento()));
+			//registro.setApartamento(buscarApartamento(dto.getNumeroApartamento()));
 			registro.setOperador(buscarOperador(dto.getOperador()));
 			registro.setTelefone(dto.getTelefone());
 			registro.setEmpresa(dto.getEmpresa());
-			registro.setPlaca(dto.getPlaca());
-		} catch(ParseException ex) {
+			registro.setPlacaVeiculo(dto.getPlacaVeiculo());
+			registro.setNomeMorador(dto.getNomeMorador());
+			registro.setTelefoneMorador(dto.getTelefoneMorador());
+			registro.setEnderecoDestino(dto.getEnderecoDestino());
+			registro.setNumeroDestino(dto.getNumeroDestino());
+			registro.setCargo(dto.getCargo());
+			registro.setBlocoDestino(dto.getBlocoDestino());
+			registro.setApartamentoDestino(dto.getApartamentoDestino());
+		} catch(RuntimeException ex) {
 			ex.printStackTrace();
 		}
 		
@@ -96,6 +103,8 @@ public class EntradaService {
 	
 	public Timestamp calcularDataSaida(Timestamp dataEntrada, LocalTime tempoPermanencia) throws ParseException {
 		LocalDateTime dataSaidaEstimada = dataEntrada.toLocalDateTime();
+		
+		
 		
 		dataSaidaEstimada = dataSaidaEstimada.plusNanos(tempoPermanencia.toNanoOfDay());
 		

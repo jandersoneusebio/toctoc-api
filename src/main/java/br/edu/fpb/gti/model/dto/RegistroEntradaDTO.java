@@ -1,5 +1,6 @@
 package br.edu.fpb.gti.model.dto;
 
+import java.sql.Blob;
 import java.sql.Timestamp;
 import java.time.LocalTime;
 
@@ -11,11 +12,11 @@ public class RegistroEntradaDTO {
 	
 	private String nome;
 
-	private String cpfCnpj;
+	private String cpf;
 
-	private Integer motivo;
+	private Integer tipoAutorizacao;
 
-	private String motivoDescricao;
+	private String observacao;
 
 	private Timestamp dataEntrada;
 
@@ -27,9 +28,29 @@ public class RegistroEntradaDTO {
 	
 	private String telefone;
 	
-	private String placa;
+	private String placaVeiculo;
+	
+	private String corVeiculo;
 	
 	private String empresa;
+	
+	private String cargo;
+	
+	private String telefoneMorador;
+	
+	private String nomeMorador;
+	
+	private String enderecoDestino;
+	
+	private Integer numeroDestino;
+	
+	private String blocoDestino;
+	
+	private String apartamentoDestino;
+	
+	private Blob imagemRosto;
+	
+	private Blob imagemDocumento;
 	
 	public Integer getNumeroApartamento() {
 		return numeroApartamento;
@@ -55,28 +76,28 @@ public class RegistroEntradaDTO {
 		this.nome = nome;
 	}
 
-	public String getCpfCnpj() {
-		return cpfCnpj;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCpfCnpj(String cpfCnpj) {
-		this.cpfCnpj = cpfCnpj;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public Integer getMotivo() {
-		return motivo;
+	public Integer getTipoAutorizacao() {
+		return tipoAutorizacao;
 	}
 
-	public void setMotivo(Integer motivo) {
-		this.motivo = motivo;
+	public void setTipoAutorizacao(Integer tipoAutorizacao) {
+		this.tipoAutorizacao = tipoAutorizacao;
 	}
 
-	public String getMotivoDescricao() {
-		return motivoDescricao;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setMotivoDescricao(String motivoDescricao) {
-		this.motivoDescricao = motivoDescricao;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
 	public Timestamp getDataEntrada() {
@@ -119,12 +140,12 @@ public class RegistroEntradaDTO {
 		this.telefone = telefone;
 	}
 
-	public String getPlaca() {
-		return placa;
+	public String getPlacaVeiculo() {
+		return placaVeiculo;
 	}
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
+	public void setPlacaVeiculo(String placaVeiculo) {
+		this.placaVeiculo = placaVeiculo;
 	}
 
 	public String getEmpresa() {
@@ -135,6 +156,84 @@ public class RegistroEntradaDTO {
 		this.empresa = empresa;
 	}
 
-	
-	
+	public String getCorVeiculo() {
+		return corVeiculo;
+	}
+
+	public void setCorVeiculo(String corVeiculo) {
+		this.corVeiculo = corVeiculo;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getTelefoneMorador() {
+		return telefoneMorador;
+	}
+
+	public void setTelefoneMorador(String telefoneMorador) {
+		this.telefoneMorador = telefoneMorador;
+	}
+
+	public String getNomeMorador() {
+		return nomeMorador;
+	}
+
+	public void setNomeMorador(String nomeMorador) {
+		this.nomeMorador = nomeMorador;
+	}
+
+	public String getEnderecoDestino() {
+		return enderecoDestino;
+	}
+
+	public void setEnderecoDestino(String enderecoDestino) {
+		this.enderecoDestino = enderecoDestino;
+	}
+
+	public Integer getNumeroDestino() {
+		return numeroDestino;
+	}
+
+	public void setNumeroDestino(Integer numeroDestino) {
+		this.numeroDestino = numeroDestino;
+	}
+
+	public String getBlocoDestino() {
+		return blocoDestino;
+	}
+
+	public void setBlocoDestino(String blocoDestino) {
+		this.blocoDestino = blocoDestino;
+	}
+
+	public String getApartamentoDestino() {
+		return apartamentoDestino;
+	}
+
+	public void setApartamentoDestino(String apartamentoDestino) {
+		this.apartamentoDestino = apartamentoDestino;
+	}
+
+	public Blob getImagemRosto() {
+		return imagemRosto;
+	}
+
+	public void setImagemRosto(Blob imagemRosto) {
+		this.imagemRosto = imagemRosto;
+	}
+
+	public Blob getImagemDocumento() {
+		return imagemDocumento;
+	}
+
+	public void setImagemDocumento(Blob imagemDocumento) {
+		this.imagemDocumento = imagemDocumento;
+	}
+
 }
