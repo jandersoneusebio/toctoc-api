@@ -1,5 +1,7 @@
 package br.edu.fpb.gti.controller.service;
 
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.time.LocalDateTime;
@@ -7,13 +9,20 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
+import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Service;
 
 import br.edu.fpb.gti.exception.BusinessException;
 import br.edu.fpb.gti.exception.ExceptionService;
 import br.edu.fpb.gti.model.dto.RegistroEntradaDTO;
+import br.edu.fpb.gti.model.dto.RespostaEntradaDTO;
 import br.edu.fpb.gti.model.entity.Apartamento;
 import br.edu.fpb.gti.model.entity.Funcionario;
 import br.edu.fpb.gti.model.entity.RegistroEntrada;
@@ -35,12 +44,20 @@ public class EntradaService {
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
 	
-	
-	
-	public List<RegistroEntrada> listarEntradasAbertas(){
+	public List<RespostaEntradaDTO> listarEntradasAbertas(){
 		List<RegistroEntrada> listaEntradasAbertas = entradaRepository.findRegistrosAbertos();
 		
-		return listaEntradasAbertas;
+		return montarRespostaEntradasAbertas(listaEntradasAbertas);
+	}
+	
+	private List<RespostaEntradaDTO> montarRespostaEntradasAbertas(List<RegistroEntrada> entradas){
+		
+		List<RespostaEntradaDTO> resposta = entradas.stream()
+				.map(registro -> new RespostaEntradaDTO(registro))
+				.collect(Collectors.toList());
+		
+		return resposta;
+		
 	}
 
 	public RegistroEntrada registrarEntrada(RegistroEntradaDTO dto) {
@@ -86,11 +103,22 @@ public class EntradaService {
 			registro.setCargo(dto.getCargo());
 			registro.setBlocoDestino(dto.getBlocoDestino());
 			registro.setApartamentoDestino(dto.getApartamentoDestino());
-		} catch(RuntimeException ex) {
+			registro.setImagemDocumento(converterBase64ToBlob(dto.getImagemDocumento()));
+			registro.setImagemRosto(converterBase64ToBlob(dto.getImagemRosto()));
+		} catch(RuntimeException | SQLException ex) {
 			ex.printStackTrace();
 		}
 		
 		return registro;
+	}
+	
+	private Blob converterBase64ToBlob(String imagemStr) throws SerialException, SQLException {
+		
+		String base64 = imagemStr.contains(",") ? imagemStr.split(",")[1] : imagemStr;
+		
+		byte[] byteArray = java.util.Base64.getDecoder().decode(base64);
+		
+		return new SerialBlob(byteArray);
 	}
 	
 	private Apartamento buscarApartamento(Integer id) {

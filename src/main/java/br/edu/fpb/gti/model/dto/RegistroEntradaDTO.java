@@ -48,9 +48,9 @@ public class RegistroEntradaDTO {
 	
 	private String apartamentoDestino;
 	
-	private Blob imagemRosto;
+	private String imagemRosto;
 	
-	private Blob imagemDocumento;
+	private String imagemDocumento;
 	
 	public Integer getNumeroApartamento() {
 		return numeroApartamento;
@@ -220,19 +220,19 @@ public class RegistroEntradaDTO {
 		this.apartamentoDestino = apartamentoDestino;
 	}
 
-	public Blob getImagemRosto() {
+	public String getImagemRosto() {
 		return imagemRosto;
 	}
 
-	public void setImagemRosto(Blob imagemRosto) {
+	public void setImagemRosto(String imagemRosto) {
 		this.imagemRosto = imagemRosto;
 	}
 
-	public Blob getImagemDocumento() {
+	public String getImagemDocumento() {
 		return imagemDocumento;
 	}
 
-	public void setImagemDocumento(Blob imagemDocumento) {
+	public void setImagemDocumento(String imagemDocumento) {
 		this.imagemDocumento = imagemDocumento;
 	}
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.fpb.gti.controller.service.EntradaService;
 import br.edu.fpb.gti.exception.BusinessException;
 import br.edu.fpb.gti.model.dto.RegistroEntradaDTO;
+import br.edu.fpb.gti.model.dto.RespostaEntradaDTO;
 import br.edu.fpb.gti.model.entity.RegistroEntrada;
 
 @RestController
@@ -26,10 +27,10 @@ public class EntradaController {
 	private EntradaService entradaService;
 	
 	@GetMapping("listar-entradas-abertas")
-	public ResponseEntity<List<RegistroEntrada>> listarEntradasAbertas(){
-		List<RegistroEntrada> lista = entradaService.listarEntradasAbertas();
+	public ResponseEntity<List<RespostaEntradaDTO>> listarEntradasAbertas(){
+		List<RespostaEntradaDTO> lista = entradaService.listarEntradasAbertas();
 		
-		return new ResponseEntity<List<RegistroEntrada>>(lista, HttpStatus.OK);
+		return new ResponseEntity<List<RespostaEntradaDTO>>(lista, HttpStatus.OK);
 	}
 
 	@PostMapping("registrar")

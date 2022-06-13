@@ -2,8 +2,10 @@ package br.edu.fpb.gti.model.entity;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalTime;
+import java.util.Base64;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -118,6 +121,14 @@ public class RegistroEntrada implements Serializable {
 	
 	@Column(name = "APARTAMENTO_DESTINO")
 	private String apartamentoDestino;
+	
+	@Lob
+	@Column(name = "IMAGEM_ROSTO")
+	private Blob imagemRosto;
+	
+	@Lob
+	@Column(name = "IMAGEM_DOCUMENTO")
+	private Blob imagemDocumento;
 	
 	public Long getId() {
 		return id;
@@ -301,6 +312,22 @@ public class RegistroEntrada implements Serializable {
 
 	public void setApartamentoDestino(String apartamentoDestino) {
 		this.apartamentoDestino = apartamentoDestino;
+	}
+
+	public Blob getImagemRosto() {
+		return imagemRosto;
+	}
+
+	public void setImagemRosto(Blob imagemRosto) {
+		this.imagemRosto = imagemRosto;
+	}
+
+	public Blob getImagemDocumento() {
+		return imagemDocumento;
+	}
+
+	public void setImagemDocumento(Blob imagemDocumento) {
+		this.imagemDocumento = imagemDocumento;
 	}
 	
 	

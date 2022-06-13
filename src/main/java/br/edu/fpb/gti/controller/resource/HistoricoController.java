@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.fpb.gti.controller.service.HistoricoService;
-import br.edu.fpb.gti.model.entity.RegistroEntrada;
+import br.edu.fpb.gti.model.dto.RespostaEntradaDTO;
 
 @RestController
 @RequestMapping("historico")
@@ -22,11 +22,11 @@ public class HistoricoController {
 	
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<RegistroEntrada>> getAllRegistrosFechados(){
+	public ResponseEntity<List<RespostaEntradaDTO>> getAllRegistrosFechados(){
 		
-		List<RegistroEntrada> registros = historicoService.getAllRegistrosFechados();
+		List<RespostaEntradaDTO> registros = historicoService.getAllRegistrosFechados();
 		
-		return new ResponseEntity<List<RegistroEntrada>>(registros, HttpStatus.OK);
+		return new ResponseEntity<List<RespostaEntradaDTO>>(registros, HttpStatus.OK);
 	}
 	
 }
