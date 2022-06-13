@@ -30,6 +30,8 @@ public class RegistroEntradaDTO {
 	
 	private String placaVeiculo;
 	
+	private String modeloVeiculo;
+	
 	private String corVeiculo;
 	
 	private String empresa;
@@ -235,5 +237,15 @@ public class RegistroEntradaDTO {
 	public void setImagemDocumento(String imagemDocumento) {
 		this.imagemDocumento = imagemDocumento;
 	}
+
+	public String getModeloVeiculo() {
+		return modeloVeiculo;
+	}
+
+	public void setModeloVeiculo(String modeloVeiculo) {
+		this.modeloVeiculo = modeloVeiculo;
+	}
+	
+	
 
 }

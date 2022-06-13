@@ -96,6 +96,8 @@ public class EntradaService {
 			registro.setTelefone(dto.getTelefone());
 			registro.setEmpresa(dto.getEmpresa());
 			registro.setPlacaVeiculo(dto.getPlacaVeiculo());
+			registro.setCorVeiculo(dto.getCorVeiculo());
+			registro.setModeloVeiculo(dto.getModeloVeiculo());
 			registro.setNomeMorador(dto.getNomeMorador());
 			registro.setTelefoneMorador(dto.getTelefoneMorador());
 			registro.setEnderecoDestino(dto.getEnderecoDestino());
