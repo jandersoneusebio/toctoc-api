@@ -35,9 +35,27 @@ public class RespostaEntradaDTO {
 	
 	private String placaVeiculo;
 	
+	private String modeloVeiculo;
+	
+	private String corVeiculo;
+	
 	private String imagemDocumento;
 	
 	private String imagemRosto;
+	
+	private String nomeMorador;
+	
+	private String telefoneMorador;
+	
+	private String enderecoDestino;
+	
+	private Integer numeroDestino;
+	
+	private String blocoDestino;
+	
+	private String aptoDestino;
+	
+	private String observacao;
 	
 	public RespostaEntradaDTO(RegistroEntrada registro) {
 		this.id = registro.getId();
@@ -51,8 +69,17 @@ public class RespostaEntradaDTO {
 		this.empresa = registro.getEmpresa();
 		this.cargo = registro.getCargo();
 		this.placaVeiculo = registro.getPlacaVeiculo();
+		this.corVeiculo = registro.getCorVeiculo();
+		this.modeloVeiculo = registro.getModeloVeiculo();
 		this.imagemDocumento = blobToBase64(registro.getImagemDocumento());
 		this.imagemRosto = blobToBase64(registro.getImagemRosto());
+		this.nomeMorador = registro.getNomeMorador();
+		this.telefoneMorador = registro.getTelefoneMorador();
+		this.enderecoDestino = registro.getEnderecoDestino();
+		this.numeroDestino = registro.getNumeroDestino();
+		this.blocoDestino = registro.getBlocoDestino();
+		this.aptoDestino = registro.getApartamentoDestino();
+		this.observacao = registro.getObservacao();
 	}
 	
 	private String retornarOperador(Funcionario funcionario) {
@@ -190,6 +217,77 @@ public class RespostaEntradaDTO {
 	public void setImagemRosto(String imagemRosto) {
 		this.imagemRosto = imagemRosto;
 	}
-	
+
+	public String getModeloVeiculo() {
+		return modeloVeiculo;
+	}
+
+	public void setModeloVeiculo(String modeloVeiculo) {
+		this.modeloVeiculo = modeloVeiculo;
+	}
+
+	public String getCorVeiculo() {
+		return corVeiculo;
+	}
+
+	public void setCorVeiculo(String corVeiculo) {
+		this.corVeiculo = corVeiculo;
+	}
+
+	public String getNomeMorador() {
+		return nomeMorador;
+	}
+
+	public void setNomeMorador(String nomeMorador) {
+		this.nomeMorador = nomeMorador;
+	}
+
+	public String getTelefoneMorador() {
+		return telefoneMorador;
+	}
+
+	public void setTelefoneMorador(String telefoneMorador) {
+		this.telefoneMorador = telefoneMorador;
+	}
+
+	public String getEnderecoDestino() {
+		return enderecoDestino;
+	}
+
+	public void setEnderecoDestino(String enderecoDestino) {
+		this.enderecoDestino = enderecoDestino;
+	}
+
+	public Integer getNumeroDestino() {
+		return numeroDestino;
+	}
+
+	public void setNumeroDestino(Integer numeroDestino) {
+		this.numeroDestino = numeroDestino;
+	}
+
+	public String getBlocoDestino() {
+		return blocoDestino;
+	}
+
+	public void setBlocoDestino(String blocoDestino) {
+		this.blocoDestino = blocoDestino;
+	}
+
+	public String getAptoDestino() {
+		return aptoDestino;
+	}
+
+	public void setAptoDestino(String aptoDestino) {
+		this.aptoDestino = aptoDestino;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 	
 }
